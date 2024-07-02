@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <header
-      className="xs:gap-8 xs:px-4 xs:py-4 sticky top-0 isolate z-30 flex items-center justify-between gap-4 bg-neutral-100 px-2 py-3"
+      className="xs:gap-8 xs:px-4 xs:py-4 sticky top-0 isolate z-30 flex items-center justify-between gap-4 bg-neutral-100 px-2 py-3 lg:px-16"
       ref={clickAwayRef}
     >
       <div className="xs:gap-12 z-10 flex items-center justify-between gap-4 lg:gap-24">

@@ -20,6 +20,9 @@ export default {
         inter: ["Inter", "sans-serif"],
         euclid: ["'Euclid Circular B'", "sans-serif"],
       },
+      screens: {
+        xs: "500px",
+      },
     },
   },
   plugins: [],

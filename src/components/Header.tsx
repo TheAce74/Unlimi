@@ -89,7 +89,6 @@ export default function Header() {
                 href="javascript:void(0)"
                 tabIndex={0}
                 className="flex w-full justify-between pb-2 text-left text-sm leading-5 text-gray-700 transition-colors hover:text-blue-900 focus-visible:text-blue-900"
-                role="menuitem"
               >
                 Account settings
               </a>
@@ -97,12 +96,10 @@ export default function Header() {
                 href="javascript:void(0)"
                 tabIndex={1}
                 className="flex w-full justify-between pb-2 text-left text-sm leading-5 text-gray-700 transition-colors hover:text-blue-900 focus-visible:text-blue-900"
-                role="menuitem"
               >
                 Support
               </a>
               <span
-                role="menuitem"
                 tabIndex={-1}
                 className="flex w-full cursor-not-allowed justify-between pb-2 text-left text-sm leading-5 text-gray-700 opacity-50"
                 aria-disabled="true"
@@ -113,7 +110,6 @@ export default function Header() {
                 href="javascript:void(0)"
                 tabIndex={2}
                 className="flex w-full justify-between pb-2 text-left text-sm leading-5 text-gray-700 transition-colors hover:text-blue-900 focus-visible:text-blue-900"
-                role="menuitem"
               >
                 License
               </a>
@@ -123,7 +119,6 @@ export default function Header() {
                 href="javascript:void(0)"
                 tabIndex={3}
                 className="flex w-full justify-between pb-2 text-left text-sm leading-5 text-red-700 transition-colors hover:text-red-900 focus-visible:text-red-900"
-                role="menuitem"
               >
                 Sign out
               </a>

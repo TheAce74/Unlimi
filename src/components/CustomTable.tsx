@@ -21,7 +21,7 @@ export default function CustomTable() {
   const rows =
     products && products.length > 0 ? (
       products.map((product, idx) => (
-        <Table.Tr key={product.Name}>
+        <Table.Tr key={product.SKU}>
           <Table.Td>
             <Checkbox
               variant="outline"
@@ -44,6 +44,7 @@ export default function CustomTable() {
               fallbackSrc={`https://placehold.co/50x50?text=${product.Name}`}
               alt={product.Name}
               className="min-w-max"
+              loading="lazy"
             />
           </Table.Td>
           <Table.Td>{product.SKU}</Table.Td>

@@ -1,18 +1,27 @@
 import logo from "@/assets/logo.svg";
 import logoMobile from "@/assets/logo-mobile.svg";
-import search from "@/assets/search.svg";
+import searchIcon from "@/assets/search.svg";
 import bell from "@/assets/bell.svg";
 import avatar from "@/assets/avatar.png";
 import angle from "@/assets/angle.svg";
-import { Avatar, TextInput } from "@mantine/core";
+import { Avatar, TextInput, Popover } from "@mantine/core";
 import { Sling as Hamburger } from "hamburger-react";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import clsx from "clsx";
 import { useClickAway } from "use-click-away-react";
+import { useAppContext } from "@/context/AppContext";
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
-  const { clickAwayRef } = useClickAway(() => setOpenMenu(false), ["menu"]);
+  const { clickAwayRef } = useClickAway(
+    () => setOpenMenu(false),
+    ["menu", "mantine-Popover-dropdown"],
+  );
+  const { search, setSearch } = useAppContext();
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
 
   return (
     <header
@@ -25,7 +34,9 @@ export default function Header() {
         <div>
           <TextInput
             placeholder="Search by patients..."
-            leftSection={<img src={search} alt="" className="min-w-max" />}
+            value={search}
+            onChange={handleChange}
+            leftSection={<img src={searchIcon} alt="" className="min-w-max" />}
             styles={{
               input: {
                 paddingInline: "3.5em",
@@ -46,16 +57,79 @@ export default function Header() {
           "md:static md:opacity-100",
         )}
       >
-        <button>
-          <img src={bell} alt="Notifications" className="active:scale-90" />
-        </button>
-        <div className="flex cursor-pointer items-center gap-4 active:scale-95">
-          <Avatar color="gray" radius="xl" src={avatar}>
-            DK
-          </Avatar>
-          <p className="font-inter font-medium">Deko</p>
-          <img src={angle} alt="" />
-        </div>
+        <Popover width={200} position="bottom" withArrow shadow="md">
+          <Popover.Target>
+            <button>
+              <img src={bell} alt="Notifications" className="active:scale-90" />
+            </button>
+          </Popover.Target>
+          <Popover.Dropdown>
+            <p>Nothing to see here</p>
+          </Popover.Dropdown>
+        </Popover>
+        <Popover width={250} position="bottom" shadow="md">
+          <Popover.Target>
+            <div className="flex cursor-pointer items-center gap-4 active:scale-95">
+              <Avatar color="gray" radius="xl" src={avatar}>
+                DK
+              </Avatar>
+              <p className="font-inter font-medium">Deko</p>
+              <img src={angle} alt="" />
+            </div>
+          </Popover.Target>
+          <Popover.Dropdown>
+            <div className="pb-3">
+              <p className="text-sm leading-5">Signed in as</p>
+              <p className="truncate text-sm font-medium leading-5 text-gray-900">
+                dekoking@example.com
+              </p>
+            </div>
+            <div>
+              <a
+                href="javascript:void(0)"
+                tabIndex={0}
+                className="flex w-full justify-between pb-2 text-left text-sm leading-5 text-gray-700 transition-colors hover:text-blue-900 focus-visible:text-blue-900"
+                role="menuitem"
+              >
+                Account settings
+              </a>
+              <a
+                href="javascript:void(0)"
+                tabIndex={1}
+                className="flex w-full justify-between pb-2 text-left text-sm leading-5 text-gray-700 transition-colors hover:text-blue-900 focus-visible:text-blue-900"
+                role="menuitem"
+              >
+                Support
+              </a>
+              <span
+                role="menuitem"
+                tabIndex={-1}
+                className="flex w-full cursor-not-allowed justify-between pb-2 text-left text-sm leading-5 text-gray-700 opacity-50"
+                aria-disabled="true"
+              >
+                New feature (soon)
+              </span>
+              <a
+                href="javascript:void(0)"
+                tabIndex={2}
+                className="flex w-full justify-between pb-2 text-left text-sm leading-5 text-gray-700 transition-colors hover:text-blue-900 focus-visible:text-blue-900"
+                role="menuitem"
+              >
+                License
+              </a>
+            </div>
+            <div>
+              <a
+                href="javascript:void(0)"
+                tabIndex={3}
+                className="flex w-full justify-between pb-2 text-left text-sm leading-5 text-red-700 transition-colors hover:text-red-900 focus-visible:text-red-900"
+                role="menuitem"
+              >
+                Sign out
+              </a>
+            </div>
+          </Popover.Dropdown>
+        </Popover>
       </div>
       <div className="menu md:hidden">
         <Hamburger toggled={openMenu} toggle={setOpenMenu} size={25} />
